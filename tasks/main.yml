@@ -57,6 +57,28 @@
     - postfix
     - postfix-configuration
 
+- name: Delete lines from master cf
+  lineinfile:
+    dest: "{{ postfix_master_cf }}"
+    regexp: "{{ item }}"
+    state: absent
+  with_items: "{{ master_cf_lines_to_delete }}"
+
+- name: update master config file
+  lineinfile:
+    dest: "{{ postfix_master_cf }}"
+    line: '{{ postfix_transport_maps_append }}'
+    insertafter: "EOF"
+    owner: root
+    group: root
+    mode: 0644
+    create: true
+    state: present
+  notify: restart postfix
+  tags:
+    - configuration
+    - postfix
+
 - name: configure sasl username/password
   template:
     src: "{{ postfix_sasl_passwd_file.lstrip('/') }}.j2"
@@ -172,7 +194,7 @@
     mode: 0644
     create: true
     state: present
-  with_items: "{{ postfix_transport_maps }}"
+  with_items: "{{ postfix_transport }}"
   notify:
     - postmap transport_maps
     - restart postfix

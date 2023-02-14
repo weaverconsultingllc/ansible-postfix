@@ -7,13 +7,14 @@ postfix_debconf_selections:
    vtype: select
 
 postfix_main_cf: /etc/postfix/main.cf
+postfix_master_cf: /etc/postfix/master.cf
 postfix_mailname_file: /etc/mailname
 postfix_aliases_file: /etc/aliases
 postfix_virtual_aliases_file: /etc/postfix/virtual
 postfix_sasl_passwd_file: /etc/postfix/sasl_passwd
 postfix_sender_canonical_maps_file: /etc/postfix/sender_canonical_maps
 postfix_recipient_canonical_maps_file: /etc/postfix/recipient_canonical_maps
-postfix_transport_maps_file: /etc/postfix/transport_maps
+postfix_transport_maps_file: /etc/postfix/transport
 postfix_sender_dependent_relayhost_maps_file: /etc/postfix/sender_dependent_relayhost_maps
 postfix_smtp_generic_maps_file: /etc/postfix/generic
 postfix_header_checks_file: /etc/postfix/header_checks
